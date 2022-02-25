@@ -1,20 +1,24 @@
 {
   "name": "koishi-plugin-youdao",
   "description": "Use Youdao Translation in Koishi",
-  "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
     "lib",
     "dist"
   ],
+  "author": "Shigma <shigma10826@gmail.com>",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "tsc -b"
+  },
   "keywords": [
     "chatbot",
     "koishi",
-    "plugin"
+    "plugin",
+    "youdao",
+    "translation"
   ],
   "peerDependencies": {
     "koishi": "^4.3.2"
