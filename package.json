@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-youdao",
   "description": "Use Youdao Translation in Koishi",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -10,6 +10,14 @@
   ],
   "author": "Shigma <shigma10826@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koishijs/koishi-plugin-youdao.git"
+  },
+  "bugs": {
+    "url": "https://github.com/koishijs/koishi-plugin-youdao/issues"
+  },
+  "homepage": "https://github.com/koishijs/koishi-plugin-youdao",
   "scripts": {
     "build": "tsc -b"
   },
