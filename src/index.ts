@@ -42,10 +42,11 @@ export function apply(ctx: Context, { appKey, secret }: Config) {
       if (!text) return
       const salt = new Date().getTime()
       const q = String(text)
-      const qShort = q.length > 20 ? q.slice(0, 10) + q.length + q.slice(-10) : q
+      // 虽然文档中写了超过 20 字符的处理方法, 实测如果按照文档反而无法通过校验
+      // const qShort = q.length > 20 ? q.slice(0, 10) + q.length + q.slice(-10) : q
       const from = options.from
       const to = options.to
-      const sign = encrypt(appKey + qShort + salt + secret)
+      const sign = encrypt(appKey + q + salt + secret)
       const data = await ctx.http.get('http://openapi.youdao.com/api', {
         params: { q, appKey, salt, from, to, sign },
       })
