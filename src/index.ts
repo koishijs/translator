@@ -34,7 +34,7 @@ function encrypt(source: string) {
 export const name = 'translate'
 
 export function apply(ctx: Context, { appKey, secret }: Config) {
-  ctx.command('translate <text>', '翻译工具')
+  ctx.command('translate <text:text>', '翻译工具')
     .option('from', '-f <lang>  指定源语言，默认为自动匹配', { fallback: '' })
     .option('to', '-t <lang>  指定目标语言，默认为中文', { fallback: 'zh-CHS' })
     .usage('支持的语言名包括 zh-CHS, en, ja, ko, fr, es, pt, it, ru, vi, de, ar, id, it。')
