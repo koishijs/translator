@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-youdao",
   "description": "Use Youdao Translation in Koishi",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -28,7 +28,13 @@
     "youdao",
     "translation"
   ],
+  "koishi": {
+    "description": {
+      "en": "Youdao Translation",
+      "zh": "使用有道翻译"
+    }
+  },
   "peerDependencies": {
-    "koishi": "^4.3.2"
+    "koishi": "^4.7.2"
   }
 }
