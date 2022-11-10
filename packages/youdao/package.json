@@ -1,7 +1,7 @@
 {
-  "name": "koishi-plugin-youdao",
+  "name": "koishi-plugin-translator-youdao",
   "description": "Use Youdao Translation in Koishi",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -12,11 +12,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/koishijs/koishi-plugin-translator.git",
+    "url": "git+https://github.com/koishijs/translator.git",
     "directory": "packages/youdao"
   },
   "bugs": {
-    "url": "https://github.com/koishijs/koishi-plugin-translator/issues"
+    "url": "https://github.com/koishijs/translator/issues"
   },
   "homepage": "https://translator.koishi.chat",
   "keywords": [
@@ -28,7 +28,7 @@
   ],
   "koishi": {
     "description": {
-      "en": "Youdao Translation",
+      "en": "Youdao translation",
       "zh": "使用有道翻译"
     }
   },
@@ -37,5 +37,8 @@
   },
   "devDependencies": {
     "koishi": "^4.10.0"
+  },
+  "dependencies": {
+    "@koishijs/translator": "^1.0.0"
   }
 }

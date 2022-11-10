@@ -18,7 +18,7 @@ export default defineConfig({
         { text: '介绍', link: './' },
       ],
     }, {
-      text: '生态',
+      text: '插件',
       items: [
         { text: '有道翻译 (Youdao)', link: './plugins/youdao' },
       ],
