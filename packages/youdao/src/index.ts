@@ -1,70 +1,54 @@
 import { createHash } from 'crypto'
-import { Context, Dict, Schema } from 'koishi'
-
-const languages: Dict<string> = {
-  'zh-CHS': '中文',
-  'en': '英文',
-  'ja': '日文',
-  'ko': '韩文',
-  'fr': '法文',
-  'es': '西班牙文',
-  'pt': '葡萄牙文',
-  'it': '意大利文',
-  'ru': '俄文',
-  'vi': '越南文',
-  'de': '德文',
-  'ar': '阿拉伯文',
-  'id': '印尼文',
-}
-
-export interface Config {
-  appKey?: string
-  secret?: string
-}
-
-export const Config: Schema<Config> = Schema.object({
-  appKey: Schema.string().required().description('有道翻译的 App Key。'),
-  secret: Schema.string().role('secret').required().description('有道翻译的 Secret。'),
-})
+import { Context, Schema } from 'koishi'
+import Translator from '@koishijs/translator'
 
 function encrypt(source: string) {
   return createHash('md5').update(source).digest('hex') // lgtm [js/weak-cryptographic-algorithm]
 }
 
-export const name = 'translate'
+class YoudaoTranslator extends Translator {
+  constructor(ctx: Context, public config: YoudaoTranslator.Config) {
+    super(ctx, config)
+  }
 
-export function apply(ctx: Context, { appKey, secret }: Config) {
-  ctx.command('translate <text:text>', '翻译工具')
-    .option('from', '-f <lang>  指定源语言，默认为自动匹配', { fallback: '' })
-    .option('to', '-t <lang>  指定目标语言，默认为中文', { fallback: 'zh-CHS' })
-    .usage('支持的语言名包括 zh-CHS, en, ja, ko, fr, es, pt, it, ru, vi, de, ar, id, it。')
-    .action(async ({ options }, text) => {
-      if (!text) return
-      const salt = new Date().getTime()
-      const q = String(text)
-      // 虽然文档中写了超过 20 字符的处理方法, 实测如果按照文档反而无法通过校验
-      // const qShort = q.length > 20 ? q.slice(0, 10) + q.length + q.slice(-10) : q
-      const from = options.from
-      const to = options.to
-      const sign = encrypt(appKey + q + salt + secret)
-      const data = await ctx.http.get('http://openapi.youdao.com/api', {
-        params: { q, appKey, salt, from, to, sign },
-      })
-
-      if (Number(data.errorCode)) return `翻译失败，错误码：${data.errorCode}`
-
-      const [source, target] = data.l.split('2')
-      const output = [
-        `原文本：${data.query}`,
-        `语言：${languages[source]} -> ${languages[target]}`,
-        `翻译结果：${data.translation.join('\n')}`,
-      ]
-      if (data.basic) {
-        if (data.basic.phonetic) {
-          output.push(data.basic.phonetic)
-        }
-        output.push(...data.basic.explains)
-      }
-      return output.join('\n')
+  async translate(input: string, options?: Translator.Options) {
+    const { appKey, secret } = this.config
+    const salt = new Date().getTime()
+    const q = input
+    // 虽然文档中写了超过 20 字符的处理方法, 实测如果按照文档反而无法通过校验
+    // const qShort = q.length > 20 ? q.slice(0, 10) + q.length + q.slice(-10) : q
+    const from = options.source || ''
+    const to = options.target || 'zh-CHS'
+    const sign = encrypt(appKey + q + salt + secret)
+    const data = await this.ctx.http.get('http://openapi.youdao.com/api', {
+      params: { q, appKey, salt, from, to, sign },
     })
+
+    if (+data.errorCode) {
+      throw new Error('errorCode: ' + data.errorCode)
+    }
+
+    const output: string[] = data.translation
+    if (options.detail && data.basic) {
+      if (data.basic.phonetic) {
+        output.push(data.basic.phonetic)
+      }
+      output.push(...data.basic.explains)
+    }
+    return output.join('\n')
+  }
 }
+
+namespace YoudaoTranslator {
+  export interface Config extends Translator.Config {
+    appKey?: string
+    secret?: string
+  }
+
+  export const Config: Schema<Config> = Schema.object({
+    appKey: Schema.string().required().description('有道翻译的 App Key。'),
+    secret: Schema.string().role('secret').required().description('有道翻译的 Secret。'),
+  })
+}
+
+export default YoudaoTranslator
