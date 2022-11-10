@@ -15,7 +15,7 @@
     "bump": "yakumo version",
     "dep": "yakumo upgrade",
     "pub": "yakumo publish",
-    "test": "yakumo mocha -r esbuild-register -r yml-register --experimental-vm-modules",
+    "test": "yakumo mocha -r esbuild-register -r yml-register",
     "test:text": "shx rm -rf coverage && c8 -r text yarn test",
     "test:json": "shx rm -rf coverage && c8 -r json yarn test",
     "test:html": "shx rm -rf coverage && c8 -r html yarn test"
