@@ -10,5 +10,5 @@ commands:
       expect-input: 请输入要翻译的文本。
       output: |-
         原文本：{input}
-        语言：{source} -> ${target}
+        语言：{source} -> {target}
         翻译结果：{output}

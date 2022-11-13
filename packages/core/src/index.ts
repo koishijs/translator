@@ -7,31 +7,36 @@ declare module 'koishi' {
   }
 }
 
-abstract class Translator extends Service {
-  constructor(ctx: Context, public config: Translator.Config) {
+abstract class Translator<C extends Translator.Config = Translator.Config> extends Service {
+  constructor(ctx: Context, public config: C) {
     super(ctx, 'translator', true)
 
     ctx.i18n.define('zh', zh)
 
     ctx.command('translate <text:text>')
+      .userFields(['locale'])
+      .channelFields(['locale'])
       .option('source', '-s <lang>')
       .option('target', '-t <lang>')
       .action(async ({ options, session }, input) => {
         if (!input) return session.text('.expect-input')
 
         const { source, target } = options
-        const output = this.translate('' + input, { source, target, detail: true })
-        return session.text('.output', { input, output, source, target })
+        const result: Translator.Result = { input, source, target, detail: true }
+        result.output = await this.translate(result)
+        return session.text('.output', result)
       })
   }
 
-  abstract translate(input: string, options?: Translator.Options): Promise<string>
+  abstract translate(options?: Translator.Result): Promise<string>
 }
 
 namespace Translator {
   export interface Config {}
 
-  export interface Options {
+  export interface Result {
+    input: string
+    output?: string
     source?: string
     target?: string
     detail?: boolean

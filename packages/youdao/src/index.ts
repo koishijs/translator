@@ -1,20 +1,16 @@
 import { createHash } from 'crypto'
-import { Context, Schema } from 'koishi'
+import { Schema } from 'koishi'
 import Translator from '@koishijs/translator'
 
 function encrypt(source: string) {
   return createHash('md5').update(source).digest('hex') // lgtm [js/weak-cryptographic-algorithm]
 }
 
-class YoudaoTranslator extends Translator {
-  constructor(ctx: Context, public config: YoudaoTranslator.Config) {
-    super(ctx, config)
-  }
-
-  async translate(input: string, options?: Translator.Options) {
+class YoudaoTranslator extends Translator<YoudaoTranslator.Config> {
+  async translate(options?: Translator.Result) {
     const { appKey, secret } = this.config
     const salt = new Date().getTime()
-    const q = input
+    const q = options.input
     // 虽然文档中写了超过 20 字符的处理方法, 实测如果按照文档反而无法通过校验
     // const qShort = q.length > 20 ? q.slice(0, 10) + q.length + q.slice(-10) : q
     const from = options.source || ''
@@ -35,6 +31,7 @@ class YoudaoTranslator extends Translator {
       }
       output.push(...data.basic.explains)
     }
+    [options.source, options.target] = data.l.split('2')
     return output.join('\n')
   }
 }

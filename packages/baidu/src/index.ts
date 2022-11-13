@@ -1,12 +1,8 @@
 import { createHash } from 'crypto'
-import { Context, Schema } from 'koishi'
+import { Schema } from 'koishi'
 import Translator from '@koishijs/translator'
 
-class BaiduTranslator extends Translator {
-  constructor(ctx: Context, public config: BaiduTranslator.Config) {
-    super(ctx, config)
-  }
-
+class BaiduTranslator extends Translator<BaiduTranslator.Config> {
   private _signature(query: string, salt: string | number) {
     // https://fanyi-api.baidu.com/doc/21
     const str = this.config.appid + query + salt + this.config.secret
@@ -15,15 +11,16 @@ class BaiduTranslator extends Translator {
     return md5.digest('hex')
   }
 
-  async translate(input: string, options?: Translator.Options): Promise<string> {
+  async translate(options?: Translator.Result): Promise<string> {
     const from = options.source || 'auto'
     const to = options.target || 'zh'
+    const q = options.input
     const salt = new Date().getTime()
-    const sign = this._signature(input, salt.toString())
+    const sign = this._signature(q, salt.toString())
 
     const resp = await this.ctx.http.post<TranslateResponse | ErrorResponse>(
       'http://api.fanyi.baidu.com/api/trans/vip/translate',
-      { from, to, q: input, salt, appid: this.config.appid, sign },
+      { from, to, q, salt, appid: this.config.appid, sign },
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
