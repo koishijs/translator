@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-translator-youdao",
   "description": "Use Youdao Translation in Koishi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/koishijs/translator/issues"
   },
-  "homepage": "https://translator.koishi.chat",
+  "homepage": "https://translator.koishi.chat/plugins/youdao.html",
   "keywords": [
     "chatbot",
     "koishi",
@@ -30,6 +30,11 @@
     "description": {
       "en": "Youdao translation",
       "zh": "使用有道翻译"
+    },
+    "service": {
+      "implements": [
+        "translator"
+      ]
     }
   },
   "peerDependencies": {

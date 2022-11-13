@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-translator-baidu",
   "description": "Use Baidu Translation in Koishi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -33,6 +33,11 @@
     "description": {
       "en": "Baidu translation",
       "zh": "使用百度翻译"
+    },
+    "service": {
+      "implements": [
+        "translator"
+      ]
     }
   },
   "peerDependencies": {

@@ -1,4 +1,4 @@
-# koishi-plugin-translator-baidu
+# [koishi-plugin-translator-baidu](https://translator.koishi.chat/plugins/baidu.html)
 
 [![npm](https://img.shields.io/npm/v/koishi-plugin-translator-baidu?style=flat-square)](https://www.npmjs.com/package/koishi-plugin-translator-baidu)
 
