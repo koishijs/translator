@@ -31,6 +31,10 @@ class BaiduTranslator extends Translator {
       },
     )
 
+    if (+resp.error_code) {
+      throw new Error('errorCode: ' + resp.error_code)
+    }
+
     return resp.trans_result[0].dst
   }
 }
