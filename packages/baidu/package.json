@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/koishijs/translator/issues"
   },
-  "homepage": "https://translator.koishi.chat",
+  "homepage": "https://translator.koishi.chat/plugins/baidu.html",
   "keywords": [
     "chatbot",
     "koishi",

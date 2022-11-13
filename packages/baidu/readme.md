@@ -18,11 +18,3 @@
 
 百度翻译的 Secret。
 
-## 指令：translate
-
-支持的语言名包括 zh, en, yue, wyw, jp, kor, fra, spa, th, ara, ru, pt, de, it, el, nl, pl, bul, est, dan, fin, cs, rom, slo, swe, hu, cht, vie。
-
-- 基本语法：`translate <text>`
-- 选项列表：
-  - -f, --from \<lang>  源语言
-  - -t, --to \<lang>  目标语言
