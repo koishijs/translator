@@ -21,7 +21,7 @@ class BaiduTranslator extends Translator {
     const salt = new Date().getTime()
     const sign = this._signature(input, salt.toString())
 
-    const resp = await this.ctx.http.post(
+    const resp = await this.ctx.http.post<TranslateResponse | ErrorResponse>(
       'http://api.fanyi.baidu.com/api/trans/vip/translate',
       { from, to, q: input, salt, appid: this.config.appid, sign },
       {
@@ -31,8 +31,12 @@ class BaiduTranslator extends Translator {
       },
     )
 
-    if (+resp.error_code) {
+    if ('error_code' in resp && +resp.error_code) {
       throw new Error('errorCode: ' + resp.error_code)
+    }
+
+    if (!('trans_result' in resp)) {
+      throw new Error('invalid response')
     }
 
     return resp.trans_result[0].dst
@@ -52,3 +56,19 @@ namespace BaiduTranslator {
 }
 
 export default BaiduTranslator
+
+interface TranslateResponse {
+  from: string
+  to: string
+  trans_result: TranslateResult[]
+}
+
+interface ErrorResponse {
+  error_code: string
+  error_msg: string
+}
+
+interface TranslateResult {
+  src: string
+  dst: string
+}
