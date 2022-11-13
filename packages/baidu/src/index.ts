@@ -16,7 +16,7 @@ class BaiduTranslator extends Translator {
   }
 
   async translate(input: string, options?: Translator.Options): Promise<string> {
-    const from = options.source || ''
+    const from = options.source || 'auto'
     const to = options.target || 'zh'
     const salt = new Date().getTime()
     const sign = this._signature(input, salt.toString())
