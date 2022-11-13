@@ -16,7 +16,7 @@
 
 - 类型: `string`
 
-有道翻译的 Secret。
+百度翻译的 Secret。
 
 ## 指令：translate
 
