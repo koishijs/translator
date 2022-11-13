@@ -2,6 +2,7 @@
 
 @koishijs/translator 是一个用于翻译的服务。我们提供了多种实现，包括：
 
+- [koishi-plugin-translator-baidu](./plugins/baidu.md)
 - [koishi-plugin-translator-youdao](./plugins/youdao.md)
 
 ## 用法

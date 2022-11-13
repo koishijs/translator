@@ -3,7 +3,7 @@ import { defineConfig } from '@koishijs/vitepress'
 export default defineConfig({
   lang: 'zh-CN',
   title: '@koishijs/translator',
-  description: 'Translator service for Koishi',
+  description: '在 Koishi 中使用翻译服务',
 
   head: [
     ['link', { rel: 'icon', href: 'https://koishi.chat/logo.png' }],
@@ -20,6 +20,7 @@ export default defineConfig({
     }, {
       text: '插件',
       items: [
+        { text: '百度翻译 (Baidu)', link: './plugins/baidu' },
         { text: '有道翻译 (Youdao)', link: './plugins/youdao' },
       ],
     }, {

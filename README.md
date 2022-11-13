@@ -1,10 +1,10 @@
 # @koishijs/translator
 
-翻译功能支持。
+在 Koishi 中使用翻译服务。
 
 ## 文档
 
-<https://translate.koishi.chat>
+<https://translator.koishi.chat>
 
 ## 许可证
 

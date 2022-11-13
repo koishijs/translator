@@ -1,4 +1,4 @@
-# 有道翻译 (Youdao)
+# koishi-plugin-translator-youdao
 
 ## 配置项
 
