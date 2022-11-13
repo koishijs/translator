@@ -36,10 +36,10 @@
     }
   },
   "peerDependencies": {
-    "koishi": "^4.10.0"
+    "koishi": "^4.10.1"
   },
   "devDependencies": {
-    "koishi": "^4.10.0"
+    "koishi": "^4.10.1"
   },
   "dependencies": {
     "@koishijs/translator": "^1.0.0"

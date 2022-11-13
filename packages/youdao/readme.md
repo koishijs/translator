@@ -1,6 +1,6 @@
-# koishi-plugin-youdao
+# koishi-plugin-translator-youdao
 
-[![npm](https://img.shields.io/npm/v/koishi-plugin-youdao?style=flat-square)](https://www.npmjs.com/package/koishi-plugin-youdao)
+[![npm](https://img.shields.io/npm/v/koishi-plugin-translator-youdao?style=flat-square)](https://www.npmjs.com/package/koishi-plugin-translator-youdao)
 
 在 Koishi 中使用 [有道翻译](http://fanyi.youdao.com/)。
 
