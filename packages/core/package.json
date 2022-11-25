@@ -22,20 +22,13 @@
   "keywords": [
     "chatbot",
     "koishi",
-    "plugin",
-    "youdao",
+    "service",
     "translation"
   ],
-  "koishi": {
-    "description": {
-      "en": "Youdao Translation",
-      "zh": "使用有道翻译"
-    }
-  },
   "peerDependencies": {
     "koishi": "^4.10.1"
   },
   "devDependencies": {
-    "koishi": "^4.10.1"
+    "koishi": "^4.10.2"
   }
 }

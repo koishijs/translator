@@ -4,8 +4,8 @@
 
 ## 插件
 
-- [koishi-plugin-translator-baidu](https://translator.koishi.chat/plugins/baidu.md)
-- [koishi-plugin-translator-youdao](https://translator.koishi.chat/plugins/youdao.md)
+- [koishi-plugin-translator-baidu](https://translator.koishi.chat/plugins/baidu.html)
+- [koishi-plugin-translator-youdao](https://translator.koishi.chat/plugins/youdao.html)
 
 ## 许可证
 
