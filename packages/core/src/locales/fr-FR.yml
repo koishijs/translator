@@ -5,7 +5,7 @@ commands:
       source: La langue source (détection automatique par défaut)
       target: La langue cible
     messages:
-      expect-input: Entrez les mots à traduire.
+      expect-input: Entrez les mots pour la traduction.
       output: |-
         Les mots sources : {input}
         Langue : {source} → {target}
