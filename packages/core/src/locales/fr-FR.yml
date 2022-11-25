@@ -1,12 +1,12 @@
 commands:
   translate:
-    description: 文本翻译
+    description: Traduction
     options:
-      source: 源语言 (默认为自动匹配)
-      target: 目标语言 (默认为中文)
+      source: La langue source (détection automatique par défaut)
+      target: La langue cible
     messages:
-      expect-input: 请输入要翻译的文本。
+      expect-input: Entrez les mots à traduire.
       output: |-
-        原文本：{input}
-        语言：{source} -> {target}
-        翻译结果：{output}
+        Les mots sources : {input}
+        Langue : {source} → {target}
+        Résultat de la traduction : {output}
