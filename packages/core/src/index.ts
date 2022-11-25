@@ -1,5 +1,4 @@
 import { Context, Service } from 'koishi'
-import zh from './locales/zh.yml'
 
 declare module 'koishi' {
   interface Context {
@@ -11,7 +10,7 @@ abstract class Translator<C extends Translator.Config = Translator.Config> exten
   constructor(ctx: Context, public config: C) {
     super(ctx, 'translator', true)
 
-    ctx.i18n.define('zh', zh)
+    ctx.i18n.define('zh', require('./locales/zh-CN'))
 
     ctx.command('translate <text:text>')
       .userFields(['locale'])
