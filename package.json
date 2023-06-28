@@ -21,7 +21,7 @@
     "test:html": "shx rm -rf coverage && c8 -r html yarn test"
   },
   "devDependencies": {
-    "@koishijs/vitepress": "^1.4.1",
+    "@koishijs/vitepress": "^2.2.0",
     "@types/chai": "^4.3.4",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.11.9",
@@ -33,7 +33,7 @@
     "mocha": "^9.2.2",
     "sass": "^1.56.1",
     "shx": "^0.3.4",
-    "typescript": "4.8.2",
+    "typescript": "^5.1.5",
     "yakumo": "^0.3.6",
     "yakumo-esbuild": "^0.3.18",
     "yakumo-esbuild-yaml": "^0.3.1",
@@ -44,6 +44,6 @@
     "yakumo-upgrade": "^0.3.2",
     "yakumo-version": "^0.3.1",
     "yml-register": "^1.1.0",
-    "vitepress": "1.0.0-alpha.26"
+    "vitepress": "1.0.0-alpha.73"
   }
 }

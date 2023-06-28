@@ -13,8 +13,8 @@ abstract class Translator<C extends Translator.Config = Translator.Config> exten
     ctx.i18n.define('zh', require('./locales/zh-CN'))
 
     ctx.command('translate <text:text>')
-      .userFields(['locale'])
-      .channelFields(['locale'])
+      .userFields(['locales'])
+      .channelFields(['locales'])
       .option('source', '-s <lang>')
       .option('target', '-t <lang>')
       .action(async ({ options, session }, input) => {
