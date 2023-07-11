@@ -36,7 +36,7 @@ class BaiduTranslator extends Translator<BaiduTranslator.Config> {
       throw new Error('invalid response')
     }
 
-    return resp.trans_result[0].dst
+    return resp.trans_result.map((r) => r.dst).join('\n')
   }
 }
 
